@@ -1,11 +1,11 @@
 patch:
   schema_list:
-    - schema: jyut6ping3_nospaces
-    - schema: jyut6ping3
-    - schema: jyut6ping3_simp
-    - schema: jyut6ping3_simp_nospaces
-    - schema: td_pinyin_flypy_simp
     - schema: double_pinyin_flypy
+    - schema: double_jyutping_simp_ext
     - schema: td_pinyin_flypy
-    - schema: double_jyutping
-    - schema: double_jyutping_simp
+    - schema: double_jyutping_ext
+    - schema: spanish
+    #- schema: jyut6ping3
+    #- schema: jyut6ping3_simp
+    #- schema: jyut6ping3_nospaces
+    #- schema: jyut6ping3_simp_nospaces

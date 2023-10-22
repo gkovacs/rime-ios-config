@@ -21,16 +21,20 @@ switches:
   - name: full_shape
     reset: 0
     states: [ 半角, 全角 ]
-  #- name: simplification
-  #  states: [ 漢字, 汉字 ]
-  - name: zh_simp_s2t
-    options: [zh_simp, zh_tw ]
+  - options: [ trad_tw, simplification, variants_hk, noop, variants_jp ]
+    states: [ 台, 简, 港, 繁, 日 ]
     reset: 0
-    states:
-      - 汉字
-      - 漢字
+  # - name: simplification
+  #   states: [ 漢字, 汉字 ]
+  # - name: simplification
+  #   options: [zh_simp, zh_tw ]
+  #   reset: 0
+  #   states:
+  #     - 汉字
+  #     - 漢字
   - name: ascii_punct
     states: [ 。，, ．， ]
+    reset: 0
 
 engine:
   processors:
@@ -52,8 +56,10 @@ engine:
     - punct_translator
     - script_translator
   filters:
-    - simplifier@zh_simp
-    - simplifier@zh_tw
+    - simplifier@variants_hk
+    - simplifier@trad_tw
+    - simplifier@variants_jp
+    - simplifier
     - uniquifier
 
 speller:
@@ -288,12 +294,14 @@ recognizer:
     url: "^(www[.]|https?:|ftp:|mailto:).*$"
     punct: ^/[0-9]?[a-z]*$
 
-zh_simp:
-  option_name: zh_simp
-  opencc_config: t2s.json
-  tips: none
+variants_hk:
+  option_name: variants_hk
+  opencc_config: t2hk.json
 
-zh_tw:
-  option_name: zh_tw
+trad_tw:
+  option_name: trad_tw
   opencc_config: t2tw.json
-  tips: none
+
+variants_jp:
+  option_name: variants_jp
+  opencc_config: t2jp.json

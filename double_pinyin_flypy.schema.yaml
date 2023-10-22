@@ -13,17 +13,16 @@ schema:
     小鹤双拼方案。
 
 switches:
-  - name: simplifier
+  - options: [zh_simp, zh_tw, zh_hk, zh_trad ]
+    states: [ 简, 台, 港, 繁 ]
     reset: 0
-    options: [zh_simp, zh_tw ]
-    states: [ 简, 繁 ]
   - name: ascii_mode
     reset: 0
     states: [中文, 西文]
   - name: full_shape
     states: [半角, 全角]
   - name: ascii_punct
-    reset: 1
+    reset: 0
     states: [。，, ．，]
   - name: emoji_suggestion
     reset: 0
@@ -67,6 +66,16 @@ zh_simp:
 
 zh_tw:
   option_name: zh_tw
+  opencc_config: s2tw.json
+  tips: none
+
+zh_hk:
+  option_name: zh_hk
+  opencc_config: s2hk.json
+  tips: none
+
+zh_trad:
+  option_name: zh_trad
   opencc_config: s2t.json
   tips: none
 
@@ -157,7 +166,40 @@ menu:
 translator:
   dictionary: extended
   preedit_format:
-    # - xform/ // # 去掉上屏字符间空格
+    - xform/([bpmfdtnljqx])n/$1iao/
+    - xform/(\w)g/$1eng/
+    - xform/(\w)q/$1iu/
+    - xform/(\w)w/$1ei/
+    - xform/([dtnlgkhjqxyvuirzcs])r/$1uan/
+    - xform/(\w)t/$1ve/
+    - xform/(\w)y/$1un/
+    - xform/([dtnlgkhvuirzcs])o/$1uo/
+    - xform/(\w)p/$1ie/
+    - xform/([jqx])s/$1iong/
+    - xform/(\w)s/$1ong/
+    - xform/(\w)d/$1ai/
+    - xform/(\w)f/$1en/
+    - xform/(\w)h/$1ang/
+    - xform/(\w)j/$1an/
+    - xform/([gkhvuirzcs])k/$1uai/
+    - xform/(\w)k/$1ing/
+    - xform/([jqxnl])l/$1iang/
+    - xform/(\w)l/$1uang/
+    - xform/(\w)z/$1ou/
+    - xform/([gkhvuirzcs])x/$1ua/
+    - xform/(\w)x/$1ia/
+    - xform/(\w)c/$1ao/
+    - xform/([dtgkhvuirzcs])v/$1ui/
+    - xform/(\w)b/$1in/
+    - xform/(\w)m/$1ian/
+    - xform/([aoe])\1(\w)/$1$2/
+    - "xform/(^|[ '])v/$1zh/"
+    - "xform/(^|[ '])i/$1ch/"
+    - "xform/(^|[ '])u/$1sh/"
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+    - xform/eh/ê/
   prism: double_pinyin_flypy
   contextual_suggestions: true
   max_homophones: 7
