@@ -28,8 +28,8 @@ switches:
     states: [ 半角, 全角 ]
   #- name: simplification
   #  states: [ 漢字, 汉字 ]
-  - options: [simplification, zh_tw ]
-    states: [ 简, 台 ]
+  - options: [zh_simp, zh_tw ]
+    states: [ 简, 繁 ]
     reset: 0
   - name: ascii_punct
     reset: 0
@@ -60,6 +60,7 @@ engine:
     - script_translator@putonghua_to_jyutping_lookup
     - script_translator@shuangpin_to_jyutping_lookup
   filters:
+    - simplifier
     - simplifier@zh_simp
     - simplifier@zh_tw
     - uniquifier
@@ -452,6 +453,15 @@ recognizer:
     putonghua_to_jyutping_lookup: "^q[a-z][a-z]*[;/,.][a-z;/,.]*`?$"
     shuangpin_to_jyutping_lookup: "^q[a-z]*`?$"
 
+zh_simp:
+  option_name: zh_simp
+  opencc_config: t2s.json
+  tips: none
+
+zh_tw:
+  option_name: zh_tw
+  opencc_config: s2tw.json
+  tips: none
 zh_tw:
   option_name: zh_tw
   opencc_config: s2tw.json
