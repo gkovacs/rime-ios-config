@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 schema:
-  schema_id: jyut6ping3_tradsimp_nospaces
-  name: 粵拼繁無空
+  schema_id: jyut6ping3_simp_shumianyu
+  name: 粤拼简书
   version: "2022.06.07"
   author:
     - Ayaka Mikazuki <ayaka@mail.shn.hk>
@@ -27,10 +27,14 @@ switches:
     reset: 0
     states: [ 粵, 英 ]
   - name: full_shape
-    reset: 0
     states: [ 半角, 全角 ]
-  - options: [zh_tw, simplification ]
-    states: [ 繁, 简 ]
+  - options: [ noop, variants_hk, trad_tw, simplification ]
+    states: [ 傳統漢字, 香港傳統漢字, 臺灣傳統漢字, 大陆简化汉字 ]
+    # 修改下行，改變預設用字 [0, 1, 2, 3 --> 對應上表]
+    # Edit the following line to change the default character style
+    #    [0 = OpenCC Traditional Chinese; 1 = Hong Kong TC; 2 = Taiwan TC; 3 = Mainland Simplified Chinese]
+    # Or remove to remember user setting
+    reset: 1
   - name: ascii_punct
     states: [ 。，, ．， ]
   - name: emoji_suggestion
@@ -58,8 +62,6 @@ engine:
     - punct_translator
     - script_translator
   filters:
-    - simplifier@zh_tw
-    - simplifier
     - uniquifier
 
 speller:
@@ -100,7 +102,7 @@ speller:
     - xform/6/qq/                 # 陽去
 
 translator:
-  dictionary: jyut6ping3_tradsimp_nospaces
+  dictionary: jyut6ping3_simp_shumianyu
   spelling_hints: 8  # 將呢度改作 0，可以去除候選字後邊嘅粵拼提示
   preedit_format:
     - xform/([aeiouymngptk])vv/${1}4/
@@ -122,12 +124,3 @@ recognizer:
   patterns:
     punct: "^/([0-9]0?|[a-z]+)$"
 
-zh_simp:
-  option_name: zh_simp
-  opencc_config: t2s.json
-  tips: none
-
-zh_tw:
-  option_name: zh_tw
-  opencc_config: s2tw.json
-  tips: none

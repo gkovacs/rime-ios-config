@@ -20,13 +20,12 @@ schema:
 
 switches:
   - name: ascii_mode
-    reset: 0
     states: [ 中, 英 ]
   - name: full_shape
     states: [ 半角, 全角 ]
-  - options: [simplification, zh_tw ]
-    states: [ 简, 繁 ]
-    reset: 0
+  - options: [zh_tw, simplification ]
+    states: [ 繁, 简 ]
+    reset: 1
   - name: ascii_punct
     states: [ 。，, ．， ]
 
@@ -55,8 +54,8 @@ engine:
     - script_translator@putonghua_to_tones_lookup
     - script_translator@putonghua_lookup
   filters:
-    - simplifier
     - simplifier@zh_tw
+    - simplifier
     - uniquifier
     - reverse_lookup_filter@putonghua_to_tones_reverse_lookup
 
