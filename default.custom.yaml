@@ -3,6 +3,8 @@ patch:
     #- schema: jyut6ping3_pinyin
     #- schema: clover_jyutping
     #- schema: clover_show_jyutping
+    #- schema: jyut6ping3_nospaces
+    #- schema: terra_pinyin_nospaces
     - schema: double_jyutping_simp_ext
     - schema: double_jyutping_ext
     - schema: double_pinyin_flypy_show_jyutping

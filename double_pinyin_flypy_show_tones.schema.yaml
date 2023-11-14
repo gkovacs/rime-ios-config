@@ -12,7 +12,7 @@ schema:
   description: |
     小鹤双拼方案。
   dependencies:
-    - terra_pinyin_simp_nospaces
+    - terra_pinyin_tradsimp_nospaces
     - extended
     - double_pinyin_flypy
     - td_pinyin_flypy
@@ -518,7 +518,7 @@ putonghua_to_tones_lookup:
 
 putonghua_to_tones_reverse_lookup:
   tags: [ putonghua_to_tones_lookup ]
-  dictionary: terra_pinyin_simp_nospaces
+  dictionary: terra_pinyin_tradsimp_nospaces
   spelling_hints: 10
   overwrite_comment: true
   comment_format:
