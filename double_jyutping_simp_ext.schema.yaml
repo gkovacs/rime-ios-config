@@ -12,12 +12,12 @@ schema:
     聲調輸入 q平 v上 x去 （雙擊爲陽調）
     提供多種字體轉換方案
   dependencies:
-    - jyut6ping3_simp_shumianyu
+    - jyut6ping3_shumianyu
     - jyut6ping3_tradsimp_nospaces
     - terra_pinyin_simp
     - td_pinyin_flypy_simp
     - double_pinyin_flypy
-    - double_jyutping_simp_shumianyu
+    - double_jyutping_shumianyu
     - extended
 
 switches:
@@ -25,13 +25,13 @@ switches:
     states: [ 中文, 西文 ]
   - name: full_shape
     states: [ 半角, 全角 ]
-  #- name: simplification
-  #  states: [ 漢字, 汉字 ]
+    reset: 0
   - options: [ zh_tw, simplification ]
     states: [ 繁, 简 ]
     reset: 1
   - name: ascii_punct
     states: [ 。，, ．， ]
+    reset: 0
 
 engine:
   processors:
@@ -194,13 +194,10 @@ menu:
   alternative_select_keys: "123456789"
   page_size: 9
 
-grammar:
-  language: zh-hans-t-essay-bgw
-
 translator:
-  dictionary: jyut6ping3_simp_shumianyu
+  dictionary: jyut6ping3_shumianyu
   spelling_hints: 9
-  prism: double_jyutping_simp_shumianyu
+  prism: double_jyutping_shumianyu
   preedit_format:
     - xform/(^|[ '])u/$1G/
     - xform/(^|[ '])y/$1Q/
