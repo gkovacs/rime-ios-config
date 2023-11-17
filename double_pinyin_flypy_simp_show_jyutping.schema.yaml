@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 schema:
-  schema_id: double_pinyin_flypy_show_jyutping
-  name: 雙拼顯粵
+  schema_id: double_pinyin_flypy_simp_show_jyutping
+  name: 双拼显粤
   version: "0.1"
   author:
     - double pinyin layout by 鶴
@@ -26,7 +26,7 @@ switches:
     reset: 0
   - options: [zh_tw, simplification ]
     states: [ 繁, 简 ]
-    reset: 0
+    reset: 1
   - name: ascii_punct
     states: [ 。，, ．， ]
     reset: 0

@@ -9,6 +9,7 @@ patch:
     #- schema: double_jyutping_shumianyu
     - schema: double_jyutping_simp_ext
     - schema: double_jyutping_ext
+    - schema: double_pinyin_flypy_simp_show_jyutping
     - schema: double_pinyin_flypy_show_jyutping
     #- schema: terra_pinyin_simp_nospaces
     #- schema: double_pinyin_flypy
