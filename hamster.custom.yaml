@@ -286,6 +286,9 @@ patch:
         - keys:
             - action: keyboardType(numericNineGrid)
               width: percentage(0.13)
+              swipe:
+                - direction: up
+                  action: keyboardType(classifySymbolic)
             - action: nextKeyboard
             - action: character(;)
               swipe:
@@ -436,6 +439,9 @@ patch:
         - keys:
             - action: keyboardType(numericNineGrid)
               width: percentage(0.13)
+              swipe:
+                - direction: up
+                  action: keyboardType(classifySymbolic)
             - action: nextKeyboard
             - action: character(;)
               swipe:
