@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 schema:
-  schema_id: double_jyutping_simp_shumianyu
+  schema_id: double_jyutping_shumianyu_simp
   name: "粤双拼书"
   version: "20180428"
   author:

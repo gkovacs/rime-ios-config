@@ -7,13 +7,14 @@ patch:
     #- schema: terra_pinyin_nospaces
     #- schema: jyut6ping3_shumianyu
     #- schema: double_jyutping_shumianyu
-    - schema: double_jyutping_simp_ext
-    - schema: double_jyutping_ext
     - schema: double_pinyin_flypy_simp_show_jyutping
+    - schema: double_jyutping_simp_ext
     - schema: double_pinyin_flypy_show_jyutping
+    - schema: double_jyutping_ext
     #- schema: terra_pinyin_simp_nospaces
     #- schema: double_pinyin_flypy
-    - schema: double_pinyin_flypy_show_tones
+    - schema: double_pinyin_flypy_simp_show_tones
+    - schema: double_jyutping_shumianyu_simp_ext
     #- schema: td_pinyin_flypy
     #- schema: double_jyutping_ext
     - schema: spanish

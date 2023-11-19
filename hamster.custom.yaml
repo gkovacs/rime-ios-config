@@ -1,0 +1,473 @@
+patch:
+  keyboards:
+    - name: yingwen
+      rows:
+        - keys:
+            - action: character(q)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(1)
+                  display: true
+            - action: character(w)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(2)
+                  display: true
+                - direction: down
+                  action: character(ű)
+                  display: true
+            - action: character(e)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(3)
+                  display: true
+                - direction: down
+                  action: character(é)
+                  display: true
+            - action: character(r)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(4)
+                  display: true
+                - direction: down
+                  action: character(ä)
+                  display: true
+            - action: character(t)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(5)
+                  display: true
+                - direction: down
+                  action: character(ë)
+                  display: true
+            - action: character(y)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(6)
+                  display: true
+                - direction: down
+                  action: character(ý)
+                  display: true
+            - action: character(u)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(7)
+                  display: true
+                - direction: down
+                  action: character(ú)
+                  display: true
+            - action: character(i)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(8)
+                  display: true
+                - direction: down
+                  action: character(í)
+                  display: true
+            - action: character(o)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(9)
+                  display: true
+                - direction: down
+                  action: character(ó)
+                  display: true
+            - action: character(p)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(0)
+                  display: true
+                - direction: down
+                  action: character(ô)
+                  display: true
+        - keys:
+            - action: characterMargin(a)
+              processByRIME: false
+              width: available
+              swipe:
+                - direction: up
+                  action: character(à)
+                  display: false
+                - direction: down
+                  action: character(á)
+                  display: false
+            - action: character(a)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(à)
+                  display: true
+                - direction: down
+                  action: character(á)
+                  display: true
+            - action: character(s)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character($)
+                  display: true
+                - direction: down
+                  action: character(ü)
+                  display: true
+            - action: character(d)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(đ)
+                  display: true
+                - direction: down
+                  action: character(ö)
+                  display: true
+            - action: character(f)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(ù)
+                  display: true
+                - direction: down
+                  action: character(è)
+                  display: true
+            - action: character(g)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(æ)
+                  display: true
+                - direction: down
+                  action: character(œ)
+                  display: true
+            - action: character(h)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(ì)
+                  display: true
+                - direction: down
+                  action: character(ò)
+                  display: true
+            - action: character(j)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(â)
+                  display: true
+                - direction: down
+                  action: character(ê)
+                  display: true
+            - action: character(k)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(")
+                  display: true
+                - direction: down
+                  action: character(ő)
+                  display: true
+            - action: character(l)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(')
+                  display: true
+                - direction: down
+                  action: character(ű)
+                  display: true
+            - action: characterMargin(l)
+              width: available
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(')
+                  display: false
+                - direction: down
+                  action: character(ű)
+                  display: false
+        - keys:
+            - action: shift
+              width: percentage(0.13)
+            - action: characterMargin(z)
+              width: available
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(ư)
+                  display: false
+                - direction: down
+                  action: character(ơ)
+                  display: false
+            - action: character(z)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(ư)
+                  display: true
+                - direction: down
+                  action: character(ơ)
+                  display: true
+            - action: character(x)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(õ)
+                  display: true
+                - direction: down
+                  action: character(ã)
+                  display: true
+            - action: character(c)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(^)
+                  display: true
+                - direction: down
+                  action: character(ç)
+                  display: true
+            - action: character(v)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(ï)
+                  display: true
+                - direction: down
+                  action: character(ë)
+                  display: true
+            - action: character(b)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(_)
+                  display: true
+                - direction: down
+                  action: character(ß)
+                  display: true
+            - action: character(n)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(-)
+                  display: true
+                - direction: down
+                  action: character(ñ)
+                  display: true
+            - action: character(m)
+              processByRIME: false
+              swipe:
+                - direction: up
+                  action: character(î)
+                  display: true
+                - direction: down
+                  action: character(û)
+                  display: true
+            - action: characterMargin(m)
+              processByRIME: false
+              width: available
+              swipe:
+                - direction: up
+                  action: character(î)
+                  display: false
+                - direction: down
+                  action: character(û)
+                  display: false
+            - action: backspace
+              width: percentage(0.13)
+              swipe:
+                - direction: up
+                  action: shortCommand(#重输)
+        - keys:
+            - action: keyboardType(numericNineGrid)
+              width: percentage(0.13)
+            - action: nextKeyboard
+            - action: character(;)
+              swipe:
+                - direction: up
+                  action: shortCommand(#RimeSwitcher)
+                  label: "换"
+                  display: true
+            - action: character(/)
+              swipe:
+                - direction: up
+                  action: shortCommand(#RimeSwitcher)
+                  label: "换"
+                  display: true
+            - action: space
+              width: available
+              label:
+                loadingText: "仓输入法"
+                text: "空格"
+              swipe:
+                - direction: up
+                  action: keyboardType(custom(jyutping))
+            - action: character(,)
+              swipe:
+                - direction: up
+                  action: shortCommand(#上个输入方案)
+                  label: "上"
+                  display: true
+            - action: character(.)
+              swipe:
+                - direction: up
+                  action: shortCommand(#上个输入方案)
+                  label: "上"
+                  display: true
+            - action: enter
+              width: percentage(0.13)
+    - name: jyutping
+      rows:
+        - keys:
+            - action: character(q)
+              label: "手"
+              swipe:
+                - direction: up
+                  action: character(1)
+                  display: false
+            - action: character(w)
+              label: "田"
+              swipe:
+                - direction: up
+                  action: character(2)
+                  display: false
+            - action: character(e)
+              label: "水"
+              swipe:
+                - direction: up
+                  action: character(3)
+                  display: false
+            - action: character(r)
+              label: "口"
+              swipe:
+                - direction: up
+                  action: character(4)
+                  display: false
+            - action: character(t)
+              label: "廿"
+              swipe:
+                - direction: up
+                  action: character(5)
+                  display: false
+            - action: character(y)
+              label: "卜"
+              swipe:
+                - direction: up
+                  action: character(6)
+                  display: false
+            - action: character(u)
+              label: "山"
+              swipe:
+                - direction: up
+                  action: character(7)
+                  display: false
+            - action: character(i)
+              label: "戈"
+              swipe:
+                - direction: up
+                  action: character(8)
+                  display: false
+            - action: character(o)
+              label: "人"
+              swipe:
+                - direction: up
+                  action: character(9)
+                  display: false
+            - action: character(p)
+              label: "心"
+              swipe:
+                - direction: up
+                  action: character(0)
+                  display: false
+        - keys:
+            - action: characterMargin(a)
+              width: available
+            - action: character(a)
+              label: "日"
+            - action: character(s)
+              label: "尸"
+            - action: character(d)
+              label: "木"
+            - action: character(f)
+              label: "火"
+            - action: character(g)
+              label: "土"
+            - action: character(h)
+              label: "竹"
+            - action: character(j)
+              label: "十"
+            - action: character(k)
+              label: "大"
+            - action: character(l)
+              label: "中"
+            - action: characterMargin(l)
+              width: available
+        - keys:
+            - action: keyboardType(classifySymbolic)
+              width: percentage(0.13)
+            - action: characterMargin(z)
+              width: available
+            - action: character(z)
+              label: "重"
+            - action: character(x)
+              label: "難"
+            - action: character(c)
+              label: "金"
+            - action: character(v)
+              label: "女"
+            - action: character(b)
+              label: "月"
+            - action: character(n)
+              label: "弓"
+            - action: character(m)
+              label: "一"
+            - action: characterMargin(m)
+              width: available
+            - action: backspace
+              width: percentage(0.13)
+              swipe:
+                - direction: up
+                  action: shortCommand(#重输)
+        - keys:
+            - action: keyboardType(numericNineGrid)
+              width: percentage(0.13)
+            - action: nextKeyboard
+            - action: character(;)
+              swipe:
+                - direction: up
+                  action: shortCommand(#RimeSwitcher)
+                  label: "换"
+                  display: true
+            - action: character(/)
+              swipe:
+                - direction: up
+                  action: shortCommand(#RimeSwitcher)
+                  label: "换"
+                  display: true
+            - action: space
+              width: available
+              label:
+                loadingText: "仓输入法"
+                text: "空格"
+              swipe:
+                - direction: up
+                  action: keyboardType(custom(yingwen))
+            - action: character(,)
+              swipe:
+                - direction: up
+                  action: shortCommand(#上个输入方案)
+                  label: "上"
+                  display: true
+            - action: character(.)
+              swipe:
+                - direction: up
+                  action: shortCommand(#上个输入方案)
+                  label: "上"
+                  display: true
+            - action: enter
+              width: percentage(0.13)

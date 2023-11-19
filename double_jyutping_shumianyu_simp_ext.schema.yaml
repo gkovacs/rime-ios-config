@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 schema:
-  schema_id: double_jyutping_simp_ext
-  name: "粤双拼"
+  schema_id: double_jyutping_shumianyu_simp_ext
+  name: "粤双拼书"
   version: "20180428"
   author:
     - LeiMaau
@@ -12,12 +12,12 @@ schema:
     聲調輸入 q平 v上 x去 （雙擊爲陽調）
     提供多種字體轉換方案
   dependencies:
-    - jyut6ping3
+    - jyut6ping3_shumianyu
     - jyut6ping3_tradsimp_nospaces
     - terra_pinyin_simp
     - td_pinyin_flypy_simp
     - double_pinyin_flypy
-    - double_jyutping
+    - double_jyutping_shumianyu
     - extended
 
 switches:
@@ -195,9 +195,9 @@ menu:
   page_size: 9
 
 translator:
-  dictionary: jyut6ping3
+  dictionary: jyut6ping3_shumianyu
   spelling_hints: 9
-  prism: double_jyutping
+  prism: double_jyutping_shumianyu
   preedit_format:
     - xform/(^|[ '])u/$1G/
     - xform/(^|[ '])y/$1Q/
