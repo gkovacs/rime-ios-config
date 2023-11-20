@@ -17,6 +17,10 @@ x = yaml.load(Path('double_pinyin_flypy_simp_show_jyutping.schema.yaml'))
 x['schema']['name'] = '雙拼顯粵'
 x['schema']['schema_id'] = 'double_pinyin_flypy_show_jyutping'
 x['switches'][2]['reset'] = 0
+x['schema']['dependencies'].remove('terra_pinyin_simp')
+x['schema']['dependencies'].remove('td_pinyin_flypy_simp')
+x['putonghua_to_cangjie5_lookup']['dictionary'] = 'terra_pinyin'
+x['putonghua_to_cangjie5_lookup']['prism'] = 'td_pinyin_flypy'
 yaml.dump(x, Path('double_pinyin_flypy_show_jyutping.schema.yaml'))
 
 extra = yaml.load(Path('show_tones_base.yaml'))
@@ -42,12 +46,20 @@ yaml.dump(x, Path('double_pinyin_flypy_simp_show_tones.schema.yaml'))
 x['schema']['name'] = '雙拼顯調'
 x['schema']['schema_id'] = 'double_pinyin_flypy_show_tones'
 x['switches'][2]['reset'] = 0
+x['schema']['dependencies'].remove('terra_pinyin_simp')
+x['schema']['dependencies'].remove('td_pinyin_flypy_simp')
+x['putonghua_to_cangjie5_lookup']['dictionary'] = 'terra_pinyin'
+x['putonghua_to_cangjie5_lookup']['prism'] = 'td_pinyin_flypy'
 yaml.dump(x, Path('double_pinyin_flypy_show_tones.schema.yaml'))
 
 x = yaml.load(Path('double_jyutping_simp_ext.schema.yaml'))
 x['schema']['name'] = '粵雙拼'
 x['schema']['schema_id'] = 'double_jyutping_ext'
 x['switches'][2]['reset'] = 0
+x['schema']['dependencies'].remove('jyut6ping3_simp')
+x['schema']['dependencies'].remove('double_jyutping_simp')
+x['jyutping_to_cangjie5_lookup']['dictionary'] = 'jyut6ping3'
+x['jyutping_to_cangjie5_lookup']['prism'] = 'double_jyutping'
 yaml.dump(x, Path('double_jyutping_ext.schema.yaml'))
 
 x = yaml.load(Path('double_jyutping_simp_ext.schema.yaml'))
@@ -55,10 +67,16 @@ x['schema']['name'] = '粤双拼书'
 x['schema']['schema_id'] = 'double_jyutping_shumianyu_simp_ext'
 replace_in_list(x['schema']['dependencies'], 'jyut6ping3', 'jyut6ping3_shumianyu')
 replace_in_list(x['schema']['dependencies'], 'double_jyutping', 'double_jyutping_shumianyu')
+x['translator']['dictionary'] = 'jyut6ping3_shumianyu'
+x['translator']['prism'] = 'double_jyutping_shumianyu'
 x['switches'][2]['reset'] = 1
 yaml.dump(x, Path('double_jyutping_shumianyu_simp_ext.schema.yaml'))
 
 x['schema']['name'] = '粵雙拼書'
 x['schema']['schema_id'] = 'double_jyutping_shumianyu_ext'
 x['switches'][2]['reset'] = 0
+x['schema']['dependencies'].remove('jyut6ping3_simp')
+x['schema']['dependencies'].remove('double_jyutping_simp')
+x['jyutping_to_cangjie5_lookup']['dictionary'] = 'jyut6ping3'
+x['jyutping_to_cangjie5_lookup']['prism'] = 'double_jyutping'
 yaml.dump(x, Path('double_jyutping_shumianyu_ext.schema.yaml'))

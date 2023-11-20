@@ -291,12 +291,14 @@ patch:
                   action: keyboardType(classifySymbolic)
             - action: nextKeyboard
             - action: character(;)
+              processByRIME: false
               swipe:
                 - direction: up
                   action: shortCommand(#RimeSwitcher)
                   label: "换"
                   display: true
             - action: character(/)
+              processByRIME: false
               swipe:
                 - direction: up
                   action: shortCommand(#RimeSwitcher)
@@ -311,12 +313,14 @@ patch:
                 - direction: up
                   action: keyboardType(custom(jyutping))
             - action: character(,)
+              processByRIME: false
               swipe:
                 - direction: up
                   action: shortCommand(#上个输入方案)
                   label: "上"
                   display: true
             - action: character(.)
+              processByRIME: false
               swipe:
                 - direction: up
                   action: shortCommand(#上个输入方案)
@@ -333,104 +337,244 @@ patch:
                 - direction: up
                   action: character(1)
                   display: false
+                - direction: down
+                  action: character(Q)
+                  display: false
+                  processByRIME: true
             - action: character(w)
               label: "田"
               swipe:
                 - direction: up
                   action: character(2)
                   display: false
+                - direction: down
+                  action: character(W)
+                  display: false
+                  processByRIME: true
             - action: character(e)
               label: "水"
               swipe:
                 - direction: up
                   action: character(3)
                   display: false
+                - direction: down
+                  action: character(E)
+                  display: false
+                  processByRIME: true
             - action: character(r)
               label: "口"
               swipe:
                 - direction: up
                   action: character(4)
                   display: false
+                - direction: down
+                  action: character(R)
+                  display: false
+                  processByRIME: true
             - action: character(t)
               label: "廿"
               swipe:
                 - direction: up
                   action: character(5)
                   display: false
+                - direction: down
+                  action: character(T)
+                  display: false
+                  processByRIME: true
             - action: character(y)
               label: "卜"
               swipe:
                 - direction: up
                   action: character(6)
                   display: false
+                - direction: down
+                  action: character(Y)
+                  display: false
+                  processByRIME: true
             - action: character(u)
               label: "山"
               swipe:
                 - direction: up
                   action: character(7)
                   display: false
+                - direction: down
+                  action: character(U)
+                  display: false
+                  processByRIME: true
             - action: character(i)
               label: "戈"
               swipe:
                 - direction: up
                   action: character(8)
                   display: false
+                - direction: down
+                  action: character(I)
+                  display: false
+                  processByRIME: true
             - action: character(o)
               label: "人"
               swipe:
                 - direction: up
                   action: character(9)
                   display: false
+                - direction: down
+                  action: character(O)
+                  display: false
+                  processByRIME: true
             - action: character(p)
               label: "心"
               swipe:
                 - direction: up
                   action: character(0)
                   display: false
+                - direction: down
+                  action: character(P)
+                  display: false
+                  processByRIME: true
         - keys:
             - action: characterMargin(a)
               width: available
+              swipe:
+                - direction: down
+                  action: character(A)
+                  display: false
+                  processByRIME: true
             - action: character(a)
               label: "日"
+              swipe:
+                - direction: down
+                  action: character(A)
+                  display: false
+                  processByRIME: true
             - action: character(s)
               label: "尸"
+              swipe:
+                - direction: down
+                  action: character(S)
+                  display: false
+                  processByRIME: true
             - action: character(d)
               label: "木"
+              swipe:
+                - direction: down
+                  action: character(D)
+                  display: false
+                  processByRIME: true
             - action: character(f)
               label: "火"
+              swipe:
+                - direction: down
+                  action: character(F)
+                  display: false
+                  processByRIME: true
             - action: character(g)
               label: "土"
+              swipe:
+                - direction: down
+                  action: character(G)
+                  display: false
+                  processByRIME: true
             - action: character(h)
               label: "竹"
+              swipe:
+                - direction: down
+                  action: character(H)
+                  display: false
+                  processByRIME: true
             - action: character(j)
               label: "十"
+              swipe:
+                - direction: down
+                  action: character(J)
+                  display: false
+                  processByRIME: true
             - action: character(k)
               label: "大"
+              swipe:
+                - direction: down
+                  action: character(K)
+                  display: false
+                  processByRIME: true
             - action: character(l)
               label: "中"
+              swipe:
+                - direction: down
+                  action: character(L)
+                  display: false
+                  processByRIME: true
             - action: characterMargin(l)
               width: available
+              swipe:
+                - direction: down
+                  action: character(L)
+                  display: false
+                  processByRIME: true
         - keys:
             - action: keyboardType(classifySymbolic)
               width: percentage(0.13)
             - action: characterMargin(z)
               width: available
+              swipe:
+                - direction: down
+                  action: character(Z)
+                  display: false
+                  processByRIME: true
             - action: character(z)
               label: "重"
+              swipe:
+                - direction: down
+                  action: character(Z)
+                  display: false
+                  processByRIME: true
             - action: character(x)
               label: "難"
+              swipe:
+                - direction: down
+                  action: character(X)
+                  display: false
+                  processByRIME: true
             - action: character(c)
               label: "金"
+              swipe:
+                - direction: down
+                  action: character(C)
+                  display: false
+                  processByRIME: true
             - action: character(v)
               label: "女"
+              swipe:
+                - direction: down
+                  action: character(V)
+                  display: false
+                  processByRIME: true
             - action: character(b)
               label: "月"
+              swipe:
+                - direction: down
+                  action: character(B)
+                  display: false
+                  processByRIME: true
             - action: character(n)
               label: "弓"
+              swipe:
+                - direction: down
+                  action: character(N)
+                  display: false
+                  processByRIME: true
             - action: character(m)
               label: "一"
+              swipe:
+                - direction: down
+                  action: character(M)
+                  display: false
+                  processByRIME: true
             - action: characterMargin(m)
               width: available
+              swipe:
+                - direction: down
+                  action: character(M)
+                  display: false
+                  processByRIME: true
             - action: backspace
               width: percentage(0.13)
               swipe:
