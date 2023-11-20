@@ -15,6 +15,8 @@ patch:
     #- schema: double_pinyin_flypy
     - schema: double_pinyin_flypy_simp_show_tones
     - schema: double_jyutping_shumianyu_simp_ext
+    - schema: double_pinyin_flypy_show_tones
+    - schema: double_jyutping_shumianyu_ext
     #- schema: td_pinyin_flypy
     #- schema: double_jyutping_ext
     - schema: spanish

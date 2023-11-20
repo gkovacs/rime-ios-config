@@ -12,11 +12,11 @@ schema:
   description: |
     小鹤双拼方案。
   dependencies:
+    - jyut6ping3_tradsimp_nospaces
     - extended
     - double_pinyin_flypy
     - td_pinyin_flypy
     - terra_pinyin
-    - jyut6ping3_tradsimp_nospaces
 
 switches:
   - name: ascii_mode

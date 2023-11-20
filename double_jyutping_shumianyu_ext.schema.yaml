@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 schema:
-  schema_id: double_jyutping_shumianyu_simp_ext
-  name: "粤双拼书"
+  schema_id: double_jyutping_shumianyu_ext
+  name: "粵雙拼書"
   version: "20180428"
   author:
   - LeiMaau
@@ -28,7 +28,7 @@ switches:
   reset: 0
 - options: [zh_tw, simplification]
   states: [繁, 简]
-  reset: 1
+  reset: 0
 - name: ascii_punct
   states: [。，, ．，]
   reset: 0
