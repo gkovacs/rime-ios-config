@@ -91,7 +91,8 @@ def is_cjk_any(char):
 # print(is_cjk_basic('𫗭'))
 # print(is_gbk('𫗭'))
 
-do_not_convert_set = set()
+trad_to_simp_list = {}
+
 for c in all_chars:
   if not is_cjk_basic(c) or is_extension_a(c):
     continue
@@ -102,30 +103,46 @@ for c in all_chars:
   c_simp = converter.convert(c)
   if c == c_simp:
     continue
-  if not is_cjk_basic(c_simp) or not is_gbk(c_simp):
-    do_not_convert_set.add((c, c_simp))
+  if c not in trad_to_simp_list:
+    trad_to_simp_list[c] = []
+  if c_simp not in trad_to_simp_list[c]:
+    trad_to_simp_list[c].append(c_simp)
 
 for x in open('TSCharacters.txt', 'rt').readlines():
   c,simp_list = x.split('\t')
   if not is_cjk_basic(c) or is_extension_a(c):
     continue
-  #if not is_cjk_basic(c):
-  #  continue
-  #if not is_gb18030(c):
-  #  continue
-  #if not is_gbk(c):
-  #  continue
   for c_simp in simp_list:
     if c_simp.strip() == '':
       continue
-    if not is_cjk_basic(c_simp) or not is_gbk(c_simp):
-      do_not_convert_set.add((c, c_simp))
+    if c not in trad_to_simp_list:
+      trad_to_simp_list[c] = []
+    if c_simp not in trad_to_simp_list[c] and c_simp != c:
+      trad_to_simp_list[c].append(c_simp)
 
 out_set = set()
-for c, c_simp in do_not_convert_set:
-  out_set.add(f'{c}\t{c}')
-  if is_gb18030(c_simp) and (is_cjk_basic(c_simp) or is_extension_a(c_simp) or is_extension_b(c_simp) or is_cjk(c_simp)):
-    out_set.add(f'{c_simp}\t{c}')
+
+for c,simp_list in trad_to_simp_list.items():
+  valid_simp_list = []
+  for c_simp in simp_list:
+    if is_cjk_basic(c_simp) and is_gbk(c_simp):
+      valid_simp_list.append(c_simp)
+  best_simp = None
+  if len(valid_simp_list) > 0:
+    best_simp = valid_simp_list[0]
+  for c_simp in simp_list:
+    if is_gbk(c_simp):
+      continue
+    if best_simp is None:
+      out_set.add(f'{c}\t{c}')
+      if is_gb18030(c_simp) and (is_cjk_basic(c_simp) or is_extension_a(c_simp) or is_extension_b(c_simp) or is_cjk(c_simp)):
+        out_set.add(f'{c_simp}\t{c}')
+    else:
+      if len(valid_simp_list) == 1:
+        out_set.add(f'{c}\t{best_simp}')
+      if c_simp != best_simp:
+        if is_gb18030(c_simp) and (is_cjk_basic(c_simp) or is_extension_a(c_simp) or is_extension_b(c_simp) or is_cjk(c_simp)):
+          out_set.add(f'{c_simp}\t{best_simp}')
 
 stchars = open('opencc/TSCharacters_custom.txt', 'wt')
 for x in out_set:
