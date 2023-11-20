@@ -13,14 +13,15 @@ schema:
     小鹤双拼方案。
 
 switches:
-  - options: [zh_simp, zh_tw, zh_hk, zh_trad ]
-    states: [ 简, 台, 港, 繁 ]
-    reset: 0
   - name: ascii_mode
-    reset: 0
     states: [中文, 西文]
+    reset: 0
   - name: full_shape
     states: [半角, 全角]
+    reset: 0
+  - options: [zh_tw, simplification]
+    states: [繁, 简]
+    reset: 0
   - name: ascii_punct
     reset: 0
     states: [。，, ．，]
@@ -51,8 +52,8 @@ engine:
     - script_translator
     - script_translator@putonghua_lookup
   filters:
-    - simplifier@zh_simp
     - simplifier@zh_tw
+    - simplifier
   #filters:
     #- simplifier@emoji_suggestion
     # - lua_filter@long_phrase_first # 最长词组和单字在先
@@ -67,16 +68,6 @@ zh_simp:
 zh_tw:
   option_name: zh_tw
   opencc_config: s2tw.json
-  tips: none
-
-zh_hk:
-  option_name: zh_hk
-  opencc_config: s2hk.json
-  tips: none
-
-zh_trad:
-  option_name: zh_trad
-  opencc_config: s2t.json
   tips: none
 
 # emoji_suggestion:
