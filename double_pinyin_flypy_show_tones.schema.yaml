@@ -33,11 +33,11 @@ switches:
 - name: ascii_punct
   states: [。，, ．，]
   reset: 0
-- options: ["gbk", "utf8"]                            # 字符集选单
-  reset: 0                                            # 默认 GBK
+- options: ['gbk', 'extended_charset']                             # 字符集选单
+  reset: 0   # 默认 GBK
   states:
   - GBK
-  - UTF-8
+  - UTF8
 
 engine:
   processors:
@@ -65,7 +65,7 @@ engine:
   - reverse_lookup_translator
   - script_translator@putonghua_to_tones_lookup
   - script_translator@putonghua_lookup
-  - script_translator@cangjie5_lookup
+  - table_translator@cangjie5_lookup
   - script_translator@putonghua_to_cangjie5_lookup
   filters:
   - simplifier@zh_tw
@@ -75,6 +75,11 @@ engine:
   - reverse_lookup_filter@cangjie5_reverse_lookup
   - reverse_lookup_filter@putonghua_to_cangjie5_reverse_lookup
   - charset_filter@gbk
+  - charset_filter
+  - cjk_minifier
+
+charset_filter:
+  option_name: gbk
 
 gbk:
   option_name: gbk
@@ -171,6 +176,7 @@ speller:
   - xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/
 
 translator:
+  enable_charset_filter: true
   dictionary: extended
   preedit_format:
   - xform/([bpmfdtnljqx])n/$1iao/
@@ -574,6 +580,8 @@ cangjie5_lookup:    # 倉頡五代反查
   tag: "cangjie5_lookup"
   dictionary: "cangjie5_tradsimp"
   prism: "cangjie5_tradsimp"
+  enable_charset_filter: true
+  encode_commit_history: false
   enable_user_dict: false
   enable_completion: true
   enable_sentence: false
@@ -587,16 +595,16 @@ cangjie5_lookup:    # 倉頡五代反查
   comment_format:
   - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重～|"
   disable_user_dict_for_patterns:
-  - "^Z.*$"
-  - "^YYY.*$"
   - "^z.*$"
   - "^yyy.*$"
+  - "^Z.*$"
+  - "^YYY.*$"
 
 cangjie5_reverse_lookup:
   tags: [cangjie5_lookup]
   dictionary: leimaau_jyutping_zhuyin_nospaces
   spelling_hints: 10
-  overwrite_comment: true
+  #overwrite_comment: true
 
 recognizer:
   import_preset: default

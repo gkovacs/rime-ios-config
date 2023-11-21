@@ -33,11 +33,11 @@ switches:
 - name: ascii_punct
   states: [。，, ．，]
   reset: 0
-- options: ["gbk", "utf8"]                            # 字符集选单
-  reset: 0                                            # 默认 GBK
+- options: ['gbk', 'extended_charset']                             # 字符集选单
+  reset: 0   # 默认 GBK
   states:
   - GBK
-  - UTF-8
+  - UTF8
 
 engine:
   processors:
@@ -65,7 +65,7 @@ engine:
   - reverse_lookup_translator
   - script_translator@putonghua_to_jyutping_lookup
   - script_translator@shuangpin_to_jyutping_lookup
-  - script_translator@cangjie5_lookup
+  - table_translator@cangjie5_lookup
   - script_translator@jyutping_to_cangjie5_lookup
   filters:
   - simplifier@zh_tw
@@ -76,6 +76,11 @@ engine:
   - reverse_lookup_filter@cangjie5_reverse_lookup
   - reverse_lookup_filter@jyutping_to_cangjie5_reverse_lookup
   - charset_filter@gbk
+  - charset_filter
+  - cjk_minifier
+
+charset_filter:
+  option_name: gbk
 
 gbk:
   option_name: gbk
@@ -212,6 +217,7 @@ menu:
   page_size: 9
 
 translator:
+  enable_charset_filter: true
   dictionary: jyut6ping3_shumianyu
   spelling_hints: 9
   prism: double_jyutping_shumianyu
@@ -474,13 +480,15 @@ cangjie5_lookup:    # 倉頡五代反查
   tag: "cangjie5_lookup"
   dictionary: "cangjie5_tradsimp"
   prism: "cangjie5_tradsimp"
+  enable_charset_filter: true
+  encode_commit_history: false
   enable_user_dict: false
   enable_completion: true
   enable_sentence: false
   sentence_over_completion: false
   max_phrase_length: 1
   #prefix: "od"
-  suffix: "`"
+  suffix: ""
   tips: 【仓】
   preedit_format:
   - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
@@ -489,12 +497,14 @@ cangjie5_lookup:    # 倉頡五代反查
   disable_user_dict_for_patterns:
   - "^z.*$"
   - "^yyy.*$"
+  - "^Z.*$"
+  - "^YYY.*$"
 
 cangjie5_reverse_lookup:
   tags: [cangjie5_lookup]
   dictionary: leimaau_jyutping_zhuyin_nospaces
   spelling_hints: 10
-  overwrite_comment: true
+  #overwrite_comment: true
 
 jyutping_to_cangjie5_lookup:
   tag: jyutping_to_cangjie5_lookup
@@ -632,7 +642,7 @@ recognizer:
     punct: ^/[0-9]?[a-z]*$
     putonghua_to_jyutping_lookup: "^q[a-z][a-z]*[;/,.][a-z;/,.]*`?$"
     shuangpin_to_jyutping_lookup: "^q[a-z]*`?$"
-    cangjie5_lookup: "^[A-Z][a-z]*`?$"
+    cangjie5_lookup: "^[A-Z][a-z]*$"
     jyutping_to_cangjie5_lookup: "^/[a-z][a-z;/,.]*$"
 
 zh_simp:

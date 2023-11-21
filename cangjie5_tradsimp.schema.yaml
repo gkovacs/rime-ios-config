@@ -22,10 +22,13 @@ switches:
     states: [ 半角, 全角 ]
   - name: simplification
     states: [ 漢字, 汉字 ]
-  - name: extended_charset
-    states: [ 常用, 增廣 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
+  - options: ['gbk', 'extended_charset']                           # 字符集选单
+    reset: 0 # 默认 GBK
+    states:
+      - GBK
+      - UTF8
 
 engine:
   processors:
@@ -54,9 +57,19 @@ engine:
   filters:
     #- simplifier
     - uniquifier
-    #- single_char_filter
+    - single_char_filter
     - reverse_lookup_filter@putonghua_to_cangjie_reverse_lookup
     - reverse_lookup_filter@cangjie_to_putonghua_reverse_lookup
+    - charset_filter@gbk
+    - charset_filter
+    - cjk_minifier
+
+charset_filter:
+  option_name: gbk
+
+gbk:
+  option_name: gbk
+  charset: gbk
 
 speller:
   alphabet: 'ZYWXVUTSRQONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba;,./'
@@ -110,10 +123,12 @@ speller:
 translator:
   dictionary: cangjie5_tradsimp
   enable_charset_filter: true
-  enable_sentence: false
+  enable_sentence: true
   enable_encoder: true
   encode_commit_history: false
-  max_phrase_length: 1
+  enable_completion: true
+  max_phrase_length: 5
+  prism: cangjie5_tradsimp
   preedit_format:
     - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
   comment_format:

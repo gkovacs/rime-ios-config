@@ -7,6 +7,7 @@ patch:
     #- schema: terra_pinyin_nospaces
     #- schema: jyut6ping3_shumianyu
     #- schema: double_jyutping_shumianyu
+    #- schema: cangjie5_tradsimp
     - schema: double_pinyin_flypy_simp_show_jyutping
     - schema: double_jyutping_simp_ext
     - schema: double_pinyin_flypy_show_jyutping
