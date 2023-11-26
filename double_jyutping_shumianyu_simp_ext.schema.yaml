@@ -80,6 +80,7 @@ engine:
   - charset_filter@gbk
   - charset_filter
   - cjk_minifier
+  - lua_filter@charset_filter
 
 charset_filter:
   option_name: gbk

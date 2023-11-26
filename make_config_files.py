@@ -13,6 +13,12 @@ def replace_in_list(l, old_item, new_item):
   if not found:
     raise Exception('did not find in list:', old_item)
 
+def insert_after(l, ref_item, new_item):
+  for i,x in enumerate(l):
+    if x == ref_item:
+      l.insert(i+1, new_item)
+      return
+
 x = yaml.load(Path('double_pinyin_flypy_simp_show_jyutping.schema.yaml'))
 x['schema']['name'] = '雙拼顯粵'
 x['schema']['schema_id'] = 'double_pinyin_flypy_show_jyutping'
@@ -29,16 +35,20 @@ x = yaml.load(Path('double_pinyin_flypy_simp_show_jyutping.schema.yaml'))
 x['schema']['name'] = '双拼显调'
 x['schema']['schema_id'] = 'double_pinyin_flypy_simp_show_tones'
 replace_in_list(x['schema']['dependencies'], 'jyut6ping3_tradsimp_nospaces', 'terra_pinyin_simp_nospaces')
-replace_in_list(x['engine']['segmentors'], 'affix_segmentor@putonghua_to_jyutping_lookup', 'affix_segmentor@putonghua_to_tones_lookup')
-replace_in_list(x['engine']['translators'], 'script_translator@putonghua_to_jyutping_lookup', 'script_translator@putonghua_to_tones_lookup')
-replace_in_list(x['engine']['filters'], 'reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup', 'reverse_lookup_filter@putonghua_to_tones_reverse_lookup')
+#replace_in_list(x['engine']['segmentors'], 'affix_segmentor@putonghua_to_jyutping_lookup', 'affix_segmentor@putonghua_to_tones_lookup')
+insert_after(x['engine']['segmentors'], 'abc_segmentor', 'affix_segmentor@putonghua_to_tones_lookup')
+#replace_in_list(x['engine']['translators'], 'script_translator@putonghua_to_jyutping_lookup', 'script_translator@putonghua_to_tones_lookup')
+insert_after(x['engine']['translators'], 'reverse_lookup_translator', 'script_translator@putonghua_to_tones_lookup')
+#replace_in_list(x['engine']['filters'], 'reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup', 'reverse_lookup_filter@putonghua_to_tones_reverse_lookup')
+insert_after(x['engine']['filters'], 'uniquifier', 'reverse_lookup_filter@putonghua_to_tones_reverse_lookup')
 x['engine']['filters'].remove('reverse_lookup_filter@putonghua_reverse_lookup')
+x['engine']['filters'].remove('lua_filter@reverse_lookup_filter_jyutping')
 del x['putonghua_reverse_lookup']
 del x['putonghua_to_jyutping_lookup']
 del x['putonghua_to_jyutping_reverse_lookup']
 x['putonghua_to_tones_lookup'] = extra['putonghua_to_tones_lookup']
 x['putonghua_to_tones_reverse_lookup'] = extra['putonghua_to_tones_reverse_lookup']
-del x['recognizer']['patterns']['putonghua_to_jyutping_lookup']
+#del x['recognizer']['patterns']['putonghua_to_jyutping_lookup']
 x['recognizer']['patterns']['putonghua_to_tones_lookup'] = "^[a-z]*$"
 x['switches'][2]['reset'] = 1
 yaml.dump(x, Path('double_pinyin_flypy_simp_show_tones.schema.yaml'))

@@ -55,7 +55,7 @@ engine:
     - ascii_segmentor
     - matcher
     - abc_segmentor
-    - affix_segmentor@putonghua_to_jyutping_lookup
+    #- affix_segmentor@putonghua_to_jyutping_lookup
     - affix_segmentor@putonghua_lookup
     - affix_segmentor@cangjie5_lookup
     - affix_segmentor@putonghua_to_cangjie5_lookup
@@ -65,7 +65,7 @@ engine:
     - punct_translator
     - script_translator
     - reverse_lookup_translator
-    - script_translator@putonghua_to_jyutping_lookup
+    #- script_translator@putonghua_to_jyutping_lookup
     - script_translator@putonghua_lookup
     - table_translator@cangjie5_lookup
     - script_translator@putonghua_to_cangjie5_lookup
@@ -73,13 +73,15 @@ engine:
     - simplifier@zh_tw
     - simplifier
     - uniquifier
-    - reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup
+    #- reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup
     - reverse_lookup_filter@putonghua_reverse_lookup
     - reverse_lookup_filter@cangjie5_reverse_lookup
     - reverse_lookup_filter@putonghua_to_cangjie5_reverse_lookup
+    - lua_filter@reverse_lookup_filter_jyutping
     - charset_filter@gbk
     - charset_filter
     - cjk_minifier
+    - lua_filter@charset_filter
 
 charset_filter:
   option_name: gbk
@@ -668,7 +670,7 @@ cangjie5_reverse_lookup:
 recognizer:
   import_preset: default
   patterns:
-    putonghua_to_jyutping_lookup: "^[a-z]*$"
+    #putonghua_to_jyutping_lookup: "^[a-z]*$"
     putonghua_lookup: "^[a-z][a-z;/,.]*[;/,.][a-z;/,.]*$"
     cangjie5_lookup: "^[A-Z][a-z]*`?$"
     putonghua_to_cangjie5_lookup: "^/[a-z][a-z;/,.]*$"
