@@ -25,6 +25,7 @@ patch:
     - schema: double_jyutping_shumianyu_ext
     #- schema: td_pinyin_flypy
     #- schema: double_jyutping_ext
+    - schema: cangjie5_tradsimp
     - schema: spanish
     #- schema: jyut6ping3
     #- schema: jyut6ping3_simp
