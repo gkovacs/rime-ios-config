@@ -1,4 +1,7 @@
 patch:
+  menu:
+    alternative_select_keys: "123456789"
+    page_size: 9
   schema_list:
     #- schema: jyut6ping3_pinyin
     #- schema: clover_jyutping
@@ -8,6 +11,8 @@ patch:
     #- schema: jyut6ping3_shumianyu
     #- schema: double_jyutping_shumianyu
     #- schema: cangjie5_tradsimp
+    #- schema: td_pinyin_flypy
+    #- schema: td_pinyin_flypy_simp
     - schema: double_pinyin_flypy_simp_show_jyutping
     - schema: double_jyutping_simp_ext
     - schema: double_pinyin_flypy_show_jyutping

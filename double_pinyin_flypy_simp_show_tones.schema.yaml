@@ -76,8 +76,8 @@ engine:
   - simplifier
   - uniquifier
     #- reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup
-    #- reverse_lookup_filter@putonghua_reverse_lookup
   - reverse_lookup_filter@putonghua_to_tones_reverse_lookup
+  - reverse_lookup_filter@putonghua_reverse_lookup
   - reverse_lookup_filter@cangjie5_reverse_lookup
   - reverse_lookup_filter@putonghua_to_cangjie5_reverse_lookup
   - charset_filter@gbk
@@ -108,7 +108,8 @@ zh_tw:
 #   tips: false
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcba/;
+  alphabet: 'zyxwvutsrqponmlkjihgfedcba'
+  initials: zyxwvutsrqponmlkjihgfedcba
   delimiter: " '"
   algebra:
   - erase/^xx$/
@@ -329,7 +330,7 @@ punctuator:
 putonghua_lookup:
   tag: putonghua_lookup
   prefix: ""  # 獨用jyutping_lookup反查在反查鍵「`」之後再鍵入〔大寫〕「J」
-  suffix: ""
+  suffix: "`"
   spelling_hints: 10
   dictionary: terra_pinyin
   prism: td_pinyin_flypy
@@ -595,7 +596,7 @@ cangjie5_lookup:    # 倉頡五代反查
   sentence_over_completion: false
   max_phrase_length: 1
   #prefix: "od"
-  suffix: ""
+  suffix: "`"
   tips: 【仓】
   preedit_format:
   - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
@@ -614,10 +615,10 @@ cangjie5_reverse_lookup:
   #overwrite_comment: true
 
 recognizer:
-  import_preset: default
+  #import_preset: default
   patterns:
     #putonghua_to_jyutping_lookup: "^[a-z]*$"
-    putonghua_lookup: "^[a-z][a-z;/,.]*[;/,.][a-z;/,.]*$"
+    putonghua_lookup: "^[a-z][a-z;/,.]*[;/,.][a-z;/,.]*`?$"
     cangjie5_lookup: "^[A-Z][a-z]*`?$"
     putonghua_to_cangjie5_lookup: "^/[a-z][a-z;/,.]*$"
 
