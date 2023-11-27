@@ -35,11 +35,11 @@ switches:
   - name: ascii_punct
     states: [ 。，, ．， ]
     reset: 0
-  - options: ['gbk', 'extended_charset']                           # 字符集选单
-    reset: 0 # 默认 GBK
-    states:
-      - GBK
-      - UTF8
+  # - options: ['gbk', 'extended_charset']                           # 字符集选单
+  #   reset: 0 # 默认 GBK
+  #   states:
+  #     - GBK
+  #     - UTF8
 
 engine:
   processors:
@@ -78,17 +78,17 @@ engine:
     - reverse_lookup_filter@cangjie5_reverse_lookup
     - reverse_lookup_filter@jyutping_to_cangjie5_reverse_lookup
     - lua_filter@reverse_lookup_filter_jyutping_if_empty
-    - charset_filter@gbk
-    - charset_filter
-    - cjk_minifier
+    # - charset_filter@gbk
+    # - charset_filter
+    # - cjk_minifier
     - lua_filter@charset_filter
 
-charset_filter:
-  option_name: gbk
+# charset_filter:
+#   option_name: gbk
 
-gbk:
-  option_name: gbk
-  charset: gbk
+# gbk:
+#   option_name: gbk
+#   charset: gbk
 
 speller:
   alphabet: 'zyxwvutsrqponmlkjihgfedcba;/,.'
@@ -221,7 +221,7 @@ menu:
   page_size: 9
 
 translator:
-  enable_charset_filter: true
+  # enable_charset_filter: true
   dictionary: jyut6ping3
   spelling_hints: 9
   prism: double_jyutping
