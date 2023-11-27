@@ -320,8 +320,14 @@ punctuator:
 #     "{": "『"
 #     "}": "』"
 
-# key_binder:
-#   import_preset: default
+key_binder:
+  bindings:
+  - {accept: "F16", select: double_jyutping_ext, when: always}
+  - {accept: "Control+Shift+1", select: .next, when: always}
+  - {accept: "Control+Shift+f", toggle: zh_simp, when: always}
+  - {accept: "Control+Shift+F", toggle: zh_simp, when: always}
+  - {accept: "Control+Shift+t", toggle: zh_tw, when: always}
+  - {accept: "Control+Shift+T", toggle: zh_tw, when: always}
 
 putonghua_lookup:
   tag: putonghua_lookup

@@ -348,6 +348,7 @@ ascii_composer:
 
 key_binder:
   bindings:
+  - {accept: "F16", select: double_pinyin_flypy_simp_show_tones, when: always}
   - {accept: "Control+Shift+1", select: .next, when: always}
   - {accept: "Control+Shift+f", toggle: zh_simp, when: always}
   - {accept: "Control+Shift+F", toggle: zh_simp, when: always}
