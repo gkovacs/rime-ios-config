@@ -39,37 +39,64 @@ local function xform_py(inp)
    return inp
 end
 
-local function reverse_lookup_filter(input, pydb)
-   for cand in input:iter() do
-      local cur_comment = ""
-      local offset_list = {}
-      for i = 1, utf8.len(cand.text) do
-        local offset = utf8.offset(cand.text, i)
-        table.insert(offset_list, offset)
+local function get_comment_for_candidate(cand, pydb, offset_list, hide_ambiguous)
+  local cur_comment = ""
+  local i = 1
+  while i < #offset_list do
+    local cur_offset_start = offset_list[i]
+    local best_j = i + i
+    local best_comment = ""
+    for j = i + 1, #offset_list do
+      local cur_offset_end = offset_list[j] - 1
+      local cur_char = string.sub(cand.text, cur_offset_start, cur_offset_end)
+      local cur_comment = xform_py(pydb:lookup(cur_char))
+      if cur_comment ~= "" then
+        best_j = j
+        if hide_ambiguous and cur_comment:match("% ") then
+          cur_comment = ""
+        end
+        best_comment = cur_comment
       end
-      table.insert(offset_list, #cand.text + 1)
-      local i = 1
-      while i < #offset_list do
-        local cur_offset_start = offset_list[i]
-        local best_j = i + i
-        local best_comment = ""
-        for j = i + 1, #offset_list do
-          local cur_offset_end = offset_list[j] - 1
-          local cur_char = string.sub(cand.text, cur_offset_start, cur_offset_end)
-          local cur_comment = xform_py(pydb:lookup(cur_char))
-          if cur_comment ~= "" then
-            best_j = j
-            best_comment = cur_comment
+    end
+    cur_comment = cur_comment .. best_comment
+    i = best_j
+    if best_j < #offset_list then
+      cur_comment = cur_comment .. "|"
+    end
+  end
+  return cur_comment
+end
+
+local function reverse_lookup_filter(input, pydb)
+  local already_yielded = {}
+   for cand in input:iter() do
+      local cur_comment = xform_py(pydb:lookup(cand.text))
+      if cur_comment == "" then
+        local offset_list = {}
+        for i = 1, utf8.len(cand.text) do
+          local offset = utf8.offset(cand.text, i)
+          table.insert(offset_list, offset)
+        end
+        table.insert(offset_list, #cand.text + 1)
+        cur_comment = get_comment_for_candidate(cand, pydb, offset_list, false)
+        if #cur_comment > 20 then
+          cur_comment = get_comment_for_candidate(cand, pydb, offset_list, true)
+          if #cur_comment > 20 then
+            cur_comment = ""
           end
         end
-        cur_comment = cur_comment .. best_comment
-        i = best_j
-        if best_j < #offset_list then
-          cur_comment = cur_comment .. "|"
-        end
       end
-      cand:get_genuine().comment = cand.comment .. " " .. cur_comment
-      yield(cand)
+      --cand:get_genuine().comment = cur_comment
+      if already_yielded[cand.text] == nil then
+        already_yielded[cand.text] = true
+        cand:get_genuine().comment = cur_comment
+        yield(cand)
+      end
+      -- if cur_comment ~= "" then
+      --   cand:get_genuine().comment = cur_comment
+      -- end
+      --cand:get_genuine().comment = cand.comment .. " " .. cur_comment
+      
       --cand:get_genuine().comment = cand.comment .. " " .. xform_py(pydb:lookup(cand.text))
       --yield(cand)
    end
