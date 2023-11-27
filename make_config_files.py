@@ -41,7 +41,7 @@ insert_after(x['engine']['segmentors'], 'abc_segmentor', 'affix_segmentor@putong
 insert_after(x['engine']['translators'], 'reverse_lookup_translator', 'script_translator@putonghua_to_tones_lookup')
 #replace_in_list(x['engine']['filters'], 'reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup', 'reverse_lookup_filter@putonghua_to_tones_reverse_lookup')
 insert_after(x['engine']['filters'], 'uniquifier', 'reverse_lookup_filter@putonghua_to_tones_reverse_lookup')
-x['engine']['filters'].remove('reverse_lookup_filter@putonghua_reverse_lookup')
+#x['engine']['filters'].remove('reverse_lookup_filter@putonghua_reverse_lookup')
 x['engine']['filters'].remove('lua_filter@reverse_lookup_filter_jyutping')
 del x['putonghua_reverse_lookup']
 del x['putonghua_to_jyutping_lookup']

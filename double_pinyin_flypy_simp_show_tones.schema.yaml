@@ -76,6 +76,7 @@ engine:
   - simplifier
   - uniquifier
     #- reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup
+    #- reverse_lookup_filter@putonghua_reverse_lookup
   - reverse_lookup_filter@putonghua_to_tones_reverse_lookup
   - reverse_lookup_filter@cangjie5_reverse_lookup
   - reverse_lookup_filter@putonghua_to_cangjie5_reverse_lookup

@@ -73,10 +73,11 @@ engine:
   - simplifier@zh_tw
   - simplifier
   - uniquifier
-  - reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup
-  - reverse_lookup_filter@shuangpin_to_jyutping_reverse_lookup
+    #- reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup
+    #- reverse_lookup_filter@shuangpin_to_jyutping_reverse_lookup
   - reverse_lookup_filter@cangjie5_reverse_lookup
   - reverse_lookup_filter@jyutping_to_cangjie5_reverse_lookup
+  - lua_filter@reverse_lookup_filter_jyutping_if_empty
   - charset_filter@gbk
   - charset_filter
   - cjk_minifier

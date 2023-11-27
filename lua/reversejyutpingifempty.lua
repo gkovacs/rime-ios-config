@@ -67,54 +67,11 @@ local function get_comment_for_candidate(cand, pydb, offset_list, hide_ambiguous
   return cur_comment
 end
 
-function startsWithUppercase(x)
-  local uppercase = {A=true, B=true, C=true, D=true, E=true, F=true, G=true, H=true, I=true, J=true, K=true, L=true, M=true, N=true, O=true, P=true, Q=true, R=true, S=true, T=true, U=true, V=true, W=true, X=true, Y=true, Z=true}
-  local firstletter = string.sub(x, 1, 1)
-  return uppercase[firstletter] ~= nil
-end
-
-function startsWithCangjie(x)
-  local uppercase = {}
-  uppercase['手'] = true
-  uppercase['田'] = true
-  uppercase['水'] = true
-  uppercase['口'] = true
-  uppercase['廿'] = true
-  uppercase['卜'] = true
-  uppercase['山'] = true
-  uppercase['戈'] = true
-  uppercase['人'] = true
-  uppercase['心'] = true
-  uppercase['日'] = true
-  uppercase['尸'] = true
-  uppercase['木'] = true
-  uppercase['火'] = true
-  uppercase['土'] = true
-  uppercase['竹'] = true
-  uppercase['十'] = true
-  uppercase['大'] = true
-  uppercase['中'] = true
-  uppercase['重'] = true
-  uppercase['難'] = true
-  uppercase['金'] = true
-  uppercase['女'] = true
-  uppercase['月'] = true
-  uppercase['弓'] = true
-  uppercase['一'] = true
-  for _, c in utf8.codes(x) do
-    if (uppercase[utf8.char(c)] ~= nil) then
-      return true
-    end
-    break
-  end
-  return false
-end
-
 local function reverse_lookup_filter(input, pydb)
   local already_yielded = {}
   for cand in input:iter() do
     local cur_comment = cand:get_genuine().comment
-    if not startsWithCangjie(cand:get_genuine().preedit) then
+    if cur_comment == "" or cur_comment == nil then
       cur_comment = xform_py(pydb:lookup(cand.text))
       if cur_comment == "" then
         local offset_list = {}
