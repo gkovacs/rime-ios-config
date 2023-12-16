@@ -45,8 +45,8 @@ insert_after(x['engine']['filters'], 'uniquifier', 'reverse_lookup_filter@putong
 #x['engine']['filters'].remove('reverse_lookup_filter@putonghua_reverse_lookup')
 x['engine']['filters'].remove('lua_filter@reverse_lookup_filter_jyutping')
 del x['putonghua_reverse_lookup']
-del x['putonghua_to_jyutping_lookup']
-del x['putonghua_to_jyutping_reverse_lookup']
+#del x['putonghua_to_jyutping_lookup']
+#del x['putonghua_to_jyutping_reverse_lookup']
 x['putonghua_to_tones_lookup'] = extra['putonghua_to_tones_lookup']
 x['putonghua_to_tones_reverse_lookup'] = extra['putonghua_to_tones_reverse_lookup']
 #del x['recognizer']['patterns']['putonghua_to_jyutping_lookup']

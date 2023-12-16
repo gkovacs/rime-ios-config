@@ -55,31 +55,32 @@ engine:
   - ascii_segmentor
   - matcher
   - abc_segmentor
-    #- affix_segmentor@putonghua_to_jyutping_lookup
   - affix_segmentor@putonghua_to_tones_lookup
+  - affix_segmentor@putonghua_to_cangjie5_lookup
   - affix_segmentor@putonghua_lookup
   - affix_segmentor@cangjie5_lookup
-  - affix_segmentor@putonghua_to_cangjie5_lookup
   - punct_segmentor
   - fallback_segmentor
   translators:
   - punct_translator
-  - script_translator
   - reverse_lookup_translator
-    #- script_translator@putonghua_to_jyutping_lookup
   - script_translator@putonghua_to_tones_lookup
+  - script_translator@putonghua_to_cangjie5_lookup
   - script_translator@putonghua_lookup
   - table_translator@cangjie5_lookup
-  - script_translator@putonghua_to_cangjie5_lookup
+  - script_translator
   filters:
+  - reverse_lookup_filter@putonghua_to_cangjie5_reverse_lookup
+  - reverse_lookup_filter@cangjie5_reverse_lookup
+  - reverse_lookup_filter@putonghua_reverse_lookup
   - simplifier@zh_tw
   - simplifier
   - uniquifier
     #- reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup
+    # - charset_filter@gbk
+    # - charset_filter
+    # - cjk_minifier
   - reverse_lookup_filter@putonghua_to_tones_reverse_lookup
-  - reverse_lookup_filter@putonghua_reverse_lookup
-  - reverse_lookup_filter@cangjie5_reverse_lookup
-  - reverse_lookup_filter@putonghua_to_cangjie5_reverse_lookup
   - lua_filter@charset_filter
 
 # charset_filter:
@@ -89,24 +90,14 @@ engine:
 #   option_name: gbk
 #   charset: gbk
 
-zh_simp:
-  option_name: zh_simp
-  opencc_config: t2s.json
-  tips: none
-
-zh_tw:
-  option_name: zh_tw
-  opencc_config: s2tw.json
-  tips: none
-
 # emoji_suggestion:
 #   opencc_config: emoji.json
 #   option_name: emoji_suggestion
 #   tips: false
 
 speller:
-  alphabet: 'zyxwvutsrqponmlkjihgfedcba'
-  initials: zyxwvutsrqponmlkjihgfedcba
+  alphabet: 'zyxwvutsrqponmlkjihgfedcba;/,.'
+  initials: 'zyxwvutsrqponmlkjihgfedcba'
   delimiter: " '"
   algebra:
   - erase/^xx$/
@@ -180,6 +171,10 @@ speller:
   - xform/in$/B/
   - xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/
 
+menu:
+  alternative_select_keys: "123456789"
+  page_size: 9
+
 translator:
   # enable_charset_filter: true
   dictionary: extended
@@ -222,77 +217,16 @@ translator:
   contextual_suggestions: true
   max_homophones: 7
 
-menu:
-  alternative_select_keys: "123456789"
-  page_size: 9
+punctuator:
+  import_preset: symbols
 
 grammar:
   language: zh-hans-t-essay-bgw
 
-punctuator:
-  import_preset: symbols
-  full_shape:
-    "`": "｀"
-    "~": "～"
-    "!": "！"
-    "@": "＠"
-    "#": "＃"
-    "$": "￥"
-    "%": "％"
-    "^": "……"
-    "&": "＆"
-    "*": "×"
-    "(": "（"
-    ")": "）"
-    "_": "——"
-    "+": "＋"
-    "-": "－"
-    "=": "＝"
-    "[": "【"
-    "]": "】"
-    "{": "｛"
-    "}": "｝"
-    "|": "｜"
-    "\\": "、"
-    "/": "、"
-    ";": "；"
-    "'": "‘"
-    ",": "，"
-    ".": "。"
-    "<": "《"
-    ">": "》"
-    "?": "？"
-  half_shape:
-    "`": "·"
-    "~": "～"
-    "!": "！"
-    "@": "@"
-    "#": "#"
-    "$": "￥"
-    "%": "%"
-    "^": "……"
-    "&": "&"
-    "*": "×"
-    "(": "（"
-    ")": "）"
-    "_": "——"
-    "+": "+"
-    "-": "-"
-    "=": "="
-    "[": "【"
-    "]": "】"
-    "{": "｛"
-    "}": "｝"
-    "|": "｜"
-    "\\": "、"
-    "/": "、"
-    ";": "；"
-    "'": "’"
-    ",": "，"
-    ".": "。"
-    "<": "《"
-    ">": "》"
-    "?": "？"
+ascii_composer:
+  switch_key:
+    Shift_L: noop
+    Shift_R: noop
 
 # punctuator:
 #   import_preset: symbols
@@ -499,23 +433,44 @@ putonghua_lookup:
   - xform 5 ˙
   - xform/ //
 
-ascii_composer:
-  import_preset: default
-  good_old_caps_lock: true
-  switch_key:
-    Shift_L: commit_code   # 左 Shift 切换直接上屏字母
-    Shift_R: commit_code   # 右 Shift 切换直接上屏字母
-    Control_L: noop
-    Control_R: noop
-    Caps_Lock: noop
-    Eisu_toggle: clear
+cangjie5_lookup:    # 倉頡五代反查
+  tag: "cangjie5_lookup"
+  dictionary: "cangjie5_tradsimp"
+  prism: "cangjie5_tradsimp"
+  enable_charset_filter: true
+  encode_commit_history: false
+  enable_user_dict: false
+  enable_completion: true
+  enable_sentence: false
+  sentence_over_completion: false
+  max_phrase_length: 1
+  prefix: ""
+  suffix: "`"
+  tips: 【仓】
+  preedit_format:
+  - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
+  comment_format:
+  - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重～|"
+  disable_user_dict_for_patterns:
+  - "^z.*$"
+  - "^yyy.*$"
+  - "^Z.*$"
+  - "^YYY.*$"
+
+cangjie5_reverse_lookup:
+  tags: [cangjie5_lookup]
+  dictionary: leimaau_jyutping_zhuyin_nospaces
+  spelling_hints: 10
+  #overwrite_comment: true
 
 putonghua_to_cangjie5_lookup:
   tag: putonghua_to_cangjie5_lookup
-  prefix: "/"  # 獨用jyutping_lookup反查在反查鍵「`」之後再鍵入〔大寫〕「J」
-  suffix: ""
+  spelling_hints: 10
   dictionary: terra_pinyin_simp
   prism: td_pinyin_flypy_simp
+  prefix: "/"
+  suffix: "`"
+  tips: 【普查倉】
   preedit_format:
   - xform/([bpmfdtnljqx])n/$1iao/
   - xform/(\w)g/$1eng/
@@ -577,66 +532,31 @@ putonghua_to_cangjie5_lookup:
   - 'xform ü/ ǘ'
   - 'xform ü, ǚ'
   - 'xform ü\. ǜ'
-  tips: 【普】
 
 putonghua_to_cangjie5_reverse_lookup:
   tags: [putonghua_to_cangjie5_lookup]
-  dictionary: "cangjie5_tradsimp"
+  dictionary: cangjie5_tradsimp
   spelling_hints: 10
   overwrite_comment: true
   comment_format:
-  - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重～|"
-
-cangjie5_lookup:    # 倉頡五代反查
-  tag: "cangjie5_lookup"
-  dictionary: "cangjie5_tradsimp"
-  prism: "cangjie5_tradsimp"
-  enable_charset_filter: true
-  encode_commit_history: false
-  enable_user_dict: false
-  enable_completion: true
-  enable_sentence: false
-  sentence_over_completion: false
-  max_phrase_length: 1
-  #prefix: "od"
-  suffix: "`"
-  tips: 【仓】
-  preedit_format:
-  - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
-  comment_format:
-  - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重～|"
-  disable_user_dict_for_patterns:
-  - "^z.*$"
-  - "^yyy.*$"
-  - "^Z.*$"
-  - "^YYY.*$"
-
-cangjie5_reverse_lookup:
-  tags: [cangjie5_lookup]
-  dictionary: leimaau_jyutping_zhuyin_nospaces
-  spelling_hints: 10
-  #overwrite_comment: true
+  - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
 
 recognizer:
-  #import_preset: default
   patterns:
-    #putonghua_to_jyutping_lookup: "^[a-z]*$"
+    putonghua_to_cangjie5_lookup: "^/[a-z][a-z;/,.]*`?$"
     putonghua_lookup: "^[a-z][a-z;/,.]*[;/,.][a-z;/,.]*`?$"
     cangjie5_lookup: "^[A-Z][a-z]*`?$"
-    putonghua_to_cangjie5_lookup: "^/[a-z][a-z;/,.]*$"
 
-# recognizer:
-#   import_preset: default
-#   patterns:
-#     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
-#     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
-#     punct: "^/([0-9]0?|[A-Za-z]+)$"
-#     html: "^<[a-z]+>$"
-#     camel: "[a-z]+[A-Z].*$"
-#     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]{1,11}[.:_].*$"
-#     putonghua_lookup: "^[a-z][a-z;/,.]*[;/,.][a-z;/,.]*$"
-#     putonghua_to_jyutping_lookup: "^[a-z]*$"
     putonghua_to_tones_lookup: ^[a-z]*$
+zh_simp:
+  option_name: zh_simp
+  opencc_config: t2s.json
+  tips: none
+
+zh_tw:
+  option_name: zh_tw
+  opencc_config: s2tw.json
+  tips: none
 putonghua_to_tones_lookup:
   tag: putonghua_to_tones_lookup
   prefix: ""  # 獨用jyutping_lookup反查在反查鍵「`」之後再鍵入〔大寫〕「J」

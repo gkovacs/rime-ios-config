@@ -63,21 +63,21 @@ engine:
   - fallback_segmentor
   translators:
   - punct_translator
-  - script_translator
   - reverse_lookup_translator
   - script_translator@putonghua_to_jyutping_lookup
   - script_translator@shuangpin_to_jyutping_lookup
-  - table_translator@cangjie5_lookup
   - script_translator@jyutping_to_cangjie5_lookup
+  - table_translator@cangjie5_lookup
+  - script_translator
   filters:
+  - reverse_lookup_filter@cangjie5_reverse_lookup
+  - reverse_lookup_filter@jyutping_to_cangjie5_reverse_lookup
+  - lua_filter@reverse_lookup_filter_jyutping_if_empty
   - simplifier@zh_tw
   - simplifier
   - uniquifier
     #- reverse_lookup_filter@putonghua_to_jyutping_reverse_lookup
     #- reverse_lookup_filter@shuangpin_to_jyutping_reverse_lookup
-  - reverse_lookup_filter@cangjie5_reverse_lookup
-  - reverse_lookup_filter@jyutping_to_cangjie5_reverse_lookup
-  - lua_filter@reverse_lookup_filter_jyutping_if_empty
     # - charset_filter@gbk
     # - charset_filter
     # - cjk_minifier
@@ -92,7 +92,7 @@ engine:
 
 speller:
   alphabet: 'zyxwvutsrqponmlkjihgfedcba;/,.'
-  initials: zyxwvutsrqponmlkjihgfedcba
+  initials: 'zyxwvutsrqponmlkjihgfedcba'
   delimiter: " '"
   algebra:
   - erase/^xx$/
@@ -339,7 +339,7 @@ translator:
     #- 'xform q ng'
 
 punctuator:
-  import_preset: default
+  import_preset: symbols
 
 ascii_composer:
   switch_key:
@@ -492,8 +492,8 @@ cangjie5_lookup:    # 倉頡五代反查
   enable_sentence: false
   sentence_over_completion: false
   max_phrase_length: 1
-  #prefix: "od"
-  suffix: ""
+  prefix: ""
+  suffix: "`"
   tips: 【仓】
   preedit_format:
   - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
@@ -513,10 +513,12 @@ cangjie5_reverse_lookup:
 
 jyutping_to_cangjie5_lookup:
   tag: jyutping_to_cangjie5_lookup
-  prefix: "/"  # 獨用jyutping_lookup反查在反查鍵「`」之後再鍵入〔大寫〕「J」
-  suffix: ""
+  spelling_hints: 10
   dictionary: jyut6ping3_simp
   prism: double_jyutping_simp
+  prefix: "/"
+  suffix: "`"
+  tips: 【粵查倉】
   preedit_format:
   - xform/(^|[ '])u/$1G/
   - xform/(^|[ '])y/$1Q/
@@ -632,23 +634,19 @@ jyutping_to_cangjie5_lookup:
 
 jyutping_to_cangjie5_reverse_lookup:
   tags: [jyutping_to_cangjie5_lookup]
-  dictionary: "cangjie5_tradsimp"
+  dictionary: cangjie5_tradsimp
   spelling_hints: 10
   overwrite_comment: true
   comment_format:
-  - "xlit|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重～|"
+  - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
 
 
 recognizer:
   patterns:
-    # email: "^[a-z][-_.0-9a-z]*@.*$"
-    # uppercase: "^[A-Z][-_+.'0-9A-Za-z]*$"
-    # url: "^(www[.]|https?:|ftp:|mailto:).*$"
-    # punct: ^/[0-9]?[a-z]*$
+    jyutping_to_cangjie5_lookup: "^/[a-z][a-z;/,.]*`?$"
     putonghua_to_jyutping_lookup: "^q[a-z][a-z]*[;/,.][a-z;/,.]*`?$"
     shuangpin_to_jyutping_lookup: "^q[a-z]*`?$"
-    cangjie5_lookup: "^[A-Z][a-z]*$"
-    jyutping_to_cangjie5_lookup: "^/[a-z][a-z;/,.]*$"
+    cangjie5_lookup: "^[A-Z][a-z]*`?$"
 
 zh_simp:
   option_name: zh_simp
