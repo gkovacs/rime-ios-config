@@ -150,7 +150,9 @@ patch:
                       char: 'ô'
                   display: true
         - keys:
-            - action: none
+            - action:
+                characterMargin:
+                  char: 'a'
               processByRIME: false
               width: available
               swipe:
@@ -299,7 +301,9 @@ patch:
                     character:
                       char: 'ű'
                   display: true
-            - action: none
+            - action:
+                characterMargin:
+                  char: 'l'
               width: available
               processByRIME: false
               swipe:
@@ -317,7 +321,9 @@ patch:
             - action: shift
               width:
                 percentage: 0.13
-            - action: none
+            - action:
+                characterMargin:
+                  char: 'z'
               width: available
               processByRIME: false
               swipe:
@@ -436,7 +442,9 @@ patch:
                     character:
                       char: 'û'
                   display: true
-            - action: none
+            - action:
+                characterMargin:
+                  char: 'm'
               processByRIME: false
               width: available
               swipe:
@@ -528,9 +536,11 @@ patch:
               swipe:
                 - direction: up
                   action:
-                    character:
-                      char: '1'
+                    shortcutCommand:
+                      sendKeys:
+                        keys: 'qq'
                   display: false
+                  processByRIME: true
                 - direction: down
                   action:
                     character:
@@ -682,7 +692,9 @@ patch:
                   display: false
                   processByRIME: true
         - keys:
-            - action: none
+            - action:
+                characterMargin:
+                  char: 'a'
               width: available
               swipe:
                 - direction: down
@@ -790,7 +802,9 @@ patch:
                       char: 'L'
                   display: false
                   processByRIME: true
-            - action: none
+            - action:
+                characterMargin:
+                  char: 'l'
               width: available
               swipe:
                 - direction: down
@@ -804,7 +818,9 @@ patch:
                 keyboardType: 'classifySymbolic'
               width:
                 percentage: 0.13
-            - action: none
+            - action:
+                characterMargin:
+                  char: 'z'
               width: available
               swipe:
                 - direction: down
@@ -890,7 +906,9 @@ patch:
                       char: 'M'
                   display: false
                   processByRIME: true
-            - action: none
+            - action:
+                characterMargin:
+                  char: 'm'
               width: available
               swipe:
                 - direction: down
