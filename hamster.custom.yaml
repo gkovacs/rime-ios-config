@@ -395,7 +395,7 @@ patch:
                 - direction: down
                   action:
                     character:
-                      char: 'ë'
+                      char: 'ù'
                   display: true
             - action:
                 character:
@@ -536,13 +536,6 @@ patch:
               swipe:
                 - direction: up
                   action:
-                    shortcutCommand:
-                      sendKeys:
-                        keys: 'qq'
-                  display: false
-                  processByRIME: true
-                - direction: down
-                  action:
                     character:
                       char: 'Q'
                   display: false
@@ -553,11 +546,6 @@ patch:
               label: "田"
               swipe:
                 - direction: up
-                  action:
-                    character:
-                      char: '2'
-                  display: false
-                - direction: down
                   action:
                     character:
                       char: 'W'
@@ -571,11 +559,6 @@ patch:
                 - direction: up
                   action:
                     character:
-                      char: '3'
-                  display: false
-                - direction: down
-                  action:
-                    character:
                       char: 'E'
                   display: false
                   processByRIME: true
@@ -585,11 +568,6 @@ patch:
               label: "口"
               swipe:
                 - direction: up
-                  action:
-                    character:
-                      char: '4'
-                  display: false
-                - direction: down
                   action:
                     character:
                       char: 'R'
@@ -603,11 +581,6 @@ patch:
                 - direction: up
                   action:
                     character:
-                      char: '5'
-                  display: false
-                - direction: down
-                  action:
-                    character:
                       char: 'T'
                   display: false
                   processByRIME: true
@@ -617,11 +590,6 @@ patch:
               label: "卜"
               swipe:
                 - direction: up
-                  action:
-                    character:
-                      char: '6'
-                  display: false
-                - direction: down
                   action:
                     character:
                       char: 'Y'
@@ -635,11 +603,6 @@ patch:
                 - direction: up
                   action:
                     character:
-                      char: '7'
-                  display: false
-                - direction: down
-                  action:
-                    character:
                       char: 'U'
                   display: false
                   processByRIME: true
@@ -649,11 +612,6 @@ patch:
               label: "戈"
               swipe:
                 - direction: up
-                  action:
-                    character:
-                      char: '8'
-                  display: false
-                - direction: down
                   action:
                     character:
                       char: 'I'
@@ -667,11 +625,6 @@ patch:
                 - direction: up
                   action:
                     character:
-                      char: '9'
-                  display: false
-                - direction: down
-                  action:
-                    character:
                       char: 'O'
                   display: false
                   processByRIME: true
@@ -683,11 +636,6 @@ patch:
                 - direction: up
                   action:
                     character:
-                      char: '0'
-                  display: false
-                - direction: down
-                  action:
-                    character:
                       char: 'P'
                   display: false
                   processByRIME: true
@@ -697,7 +645,7 @@ patch:
                   char: 'a'
               width: available
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'A'
@@ -708,7 +656,7 @@ patch:
                   char: 'a'
               label: "日"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'A'
@@ -719,7 +667,7 @@ patch:
                   char: 's'
               label: "尸"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'S'
@@ -730,7 +678,7 @@ patch:
                   char: 'd'
               label: "木"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'D'
@@ -741,7 +689,7 @@ patch:
                   char: 'f'
               label: "火"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'F'
@@ -752,7 +700,7 @@ patch:
                   char: 'g'
               label: "土"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'G'
@@ -763,7 +711,7 @@ patch:
                   char: 'h'
               label: "竹"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'H'
@@ -774,7 +722,7 @@ patch:
                   char: 'j'
               label: "十"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'J'
@@ -785,7 +733,7 @@ patch:
                   char: 'k'
               label: "大"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'K'
@@ -796,7 +744,7 @@ patch:
                   char: 'l'
               label: "中"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'L'
@@ -807,7 +755,7 @@ patch:
                   char: 'l'
               width: available
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'L'
@@ -823,7 +771,7 @@ patch:
                   char: 'z'
               width: available
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'Z'
@@ -834,7 +782,7 @@ patch:
                   char: 'z'
               label: "重"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'Z'
@@ -845,7 +793,7 @@ patch:
                   char: 'x'
               label: "難"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'X'
@@ -856,7 +804,7 @@ patch:
                   char: 'c'
               label: "金"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'C'
@@ -867,7 +815,7 @@ patch:
                   char: 'v'
               label: "女"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'V'
@@ -878,7 +826,7 @@ patch:
                   char: 'b'
               label: "月"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'B'
@@ -889,7 +837,7 @@ patch:
                   char: 'n'
               label: "弓"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'N'
@@ -900,7 +848,7 @@ patch:
                   char: 'm'
               label: "一"
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'M'
@@ -911,7 +859,7 @@ patch:
                   char: 'm'
               width: available
               swipe:
-                - direction: down
+                - direction: up
                   action:
                     character:
                       char: 'M'
